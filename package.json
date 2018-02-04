@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/cp-private/czp_h5/issues"
   },
-  "homepage": "https://github.com/cp-private/czp_h5#readme"
+  "homepage": "https://github.com/cp-private/czp_h5#readme",
+  "dependencies": {
+    "koa": "^2.4.1"
+  },
+  "devDependencies": {
+    "koa-router": "^7.4.0"
+  }
 }
