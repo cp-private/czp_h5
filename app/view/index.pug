@@ -2,8 +2,12 @@
 html
     head
         title 填写订单
-        style(href="/static/style/order.css")
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+        link(href="/static/style/common.css" rel="stylesheet")
+        link(href="/static/style/order.css" rel="stylesheet")
     body
-        img(src="/static/img/logo.jpg")
+        img#logo(src="/static/img/logo.jpg")
         div #{agentId}
+    script(src="/static/js/lib/zepto.min.js")
     script(src="/static/js/order.js")
