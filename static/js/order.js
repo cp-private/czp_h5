@@ -1,4 +1,16 @@
 (function() {
+    var location = null;
+    function getWxLoc() {
+        wx.getLocation({
+            success: function (res) {
+                location = res;
+            },
+            cancel: function (res) {
+            }
+        });
+    }
+    getWxLoc();
+    
     var orderList = $('#orderList');
     var itemHeight = $('#orderList li').eq(0).height();
     var count = 0;
@@ -68,7 +80,7 @@
         $.ajax({
             url: '/api/submit/order',
             data: data,
-            method: 'POST',
+            type: 'POST',
             success: function(res) {
                 console.log(res);
             }
