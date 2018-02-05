@@ -8,6 +8,69 @@ html
         link(href="/static/style/order.css" rel="stylesheet")
     body
         img#logo(src="/static/img/logo.jpg")
-        div #{agentId}
+        article.agent-info
+            h2 成都金牌代理商
+            p.addr 成都市武侯区铁佛塘保利花园1单元
+            p.tel 028-7419231；18511865941（唐先生）
+        article.order-info.form
+            h3 填写订单
+            form(id="orderId")
+                .item.product
+                    label 商品：
+                    .bfc
+                        select(name="product")
+                            option(value="a1") A
+                            option(value="b1") B
+                        p.msg
+                .item.tel
+                    label 联系电话：
+                    a.send-msg#sendMsg(href="javascript:;") 发送短信验证码
+                    .bfc
+                        input(type="text" name="tel")
+                        p.msg
+                .item.code
+                    label 短信验证码：
+                    .bfc
+                        input(type="text" name="code")
+                        p.msg
+                .item.cost
+                    label 成交金额：
+                    .bfc
+                        input(type="text" name="cost")
+                        p.msg
+                .item.count
+                    label 购买数量：
+                    .bfc
+                        input(type="text" name="count")
+                        p.msg
+                .item
+                    a.btn.submit(href="javascript:;") 提交订单
+        article.order-list
+            h3 最近订单量
+            .order-wrapper
+                ul#orderList
+                    li 用户***5941下单产品A1，下单金额xxx
+                    li 用户***5941下单产品A2，下单金额xxx
+                    li 用户***5941下单产品A3，下单金额xxx
+                    li 用户***5941下单产品A4，下单金额xxx
+                    li 用户***5941下单产品A5，下单金额xxx
+                    li 用户***5941下单产品A6，下单金额xxx
+                    li 用户***5941下单产品A7，下单金额xxx
+                    li 用户***5941下单产品A8，下单金额xxx
+                    li 用户***5941下单产品A9，下单金额xxx
+                    li 用户***5941下单产品A0，下单金额xxx
+                    li 用户***5941下单产品A11，下单金额xxx
+                    li 用户***5941下单产品A12，下单金额xxx
+                    li 用户***5941下单产品A13，下单金额xxx
+                    li 用户***5941下单产品A14，下单金额xxx
+                    li 用户***5941下单产品A15，下单金额xxx
+                    li 用户***5941下单产品A16，下单金额xxx
+                    li 用户***5941下单产品A17，下单金额xxx
+        .links
+            .go-comment(href="") 留言反馈
+        .ft
+            p.line
+            p.copy-right
+                | &copy;2018 鲁道夫净化
     script(src="/static/js/lib/zepto.min.js")
     script(src="/static/js/order.js")

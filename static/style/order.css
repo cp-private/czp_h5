@@ -1,0 +1,96 @@
+article {
+    background: #fff;
+    margin: 0 0 10px 0;
+    overflow: hidden;
+    padding: 10px;
+    border: solid #eee;
+    border-width: 1px 0;
+    margin-top: -1px;
+}
+
+article h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+article h2 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.form .item {
+    clear: both;
+    margin-bottom: 8px;
+    padding-right: 10px;
+}
+
+.form .item label {
+    width: 7em;
+    float: left;
+    text-align: right;
+    line-height: 35px;
+}
+
+.form .item .bfc {
+    overflow: hidden;
+}
+
+.form .item .bfc input,
+.form .item .bfc select {
+    width: 100%;
+    height: 35px;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.form .item .send-msg {
+    float: right;
+    margin-left: 5px;
+    margin: 8px 0 0 5px;
+}
+
+.form .submit {
+    height: 40px;
+    line-height: 30px;
+    width: 200px;
+    margin: auto;
+    display: block;
+}
+
+.form .item.error input,
+.form .item.error select {
+    border: 1px solid red;
+}
+
+.form .item .msg {
+    color: red;
+    display: none;;
+}
+
+.form .item.error .msg {
+    display: block;
+}
+
+.order-list ul li {
+    line-height: 1.6em;
+}
+
+.order-wrapper {
+    height: 192px;
+    overflow: hidden;
+}
+
+.links {
+    margin: 10px 0;
+}
+
+.links .go-comment {
+    border: 1px solid #fd8f04;
+    border-radius: 2px;
+    color: #fd8f04;
+    height: 35px;
+    width: 7em;
+    text-align: center;
+    line-height: 35px;
+    margin-left: 20px;
+}

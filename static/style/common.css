@@ -3,13 +3,72 @@ body,html {
     height: 100%;
 }
 
+body {
+    background: #f5f5f5;
+    color: #b2b2b2;
+    font-size: 12px;
+}
+
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #fd8f04;
 }
 
 #logo {
     width: 100%;
     display: block;
-    border-bottom: 2px solid #fd8f04;
+    border-bottom: 4px solid #fd8f04;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: normal;
+    color: #333;
+}
+
+select, input, textarea {
+    border: 1px solid #eee;
+}
+
+.btn {
+    background-color: #fff;
+    padding: 5px;
+    line-height: 1;
+    font-size: 14px;
+    border-radius: 2px;
+    text-align: center;
+    color: #fd8f04;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid #eee;
+}
+
+.ft {
+    text-align: center;
+    position: relative;
+    height: 2em;
+}
+
+.ft .copy-right {
+    line-height: 1em;
+    width: 10em;
+    margin: auto;
+    z-index: 1;
+    position: relative;
+    background: #f5f5f5;
+}
+
+.ft .line {
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    left: 10%;
+    height: 1px;
+    background: #ddd;
+    top: 0.5em;
 }
