@@ -1,0 +1,10 @@
+[{
+    "name": "czp_h5",
+    "script": "index.js",
+    "max_memory_restart": "200M",
+    "watch": ["index.js", "app", "app/view"],
+    "ignore_watch": ["static", "README.md"],
+    "env": {
+        "PORT": 3000
+    }
+}]

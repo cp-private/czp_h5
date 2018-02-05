@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/cp-private/czp_h5#readme",
   "dependencies": {
-    "koa": "^2.4.1"
+    "koa": "^2.4.1",
+    "koa-pug": "^3.0.0-2"
   },
   "devDependencies": {
     "koa-router": "^7.4.0"
