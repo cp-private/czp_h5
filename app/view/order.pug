@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+html
+    head
+        title 成都金牌代理商
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+        link(href="/static/style/common.css" rel="stylesheet")
+        link(href="/static/style/order.css" rel="stylesheet")
+    body
+        img#logo(src="/static/img/logo.jpg")
+        article.agent-info
+            case type
+                when 'before'
+                    h2 提交订单后，服务商会很快与您联系！
+                    p 在您与我们的服务商确定好检测时间后，为了此次检测数据的准确，请在上门检测前。提前12小时关闭好门窗。
+                    script window.TIP="再次感谢您对鲁道夫净化的支持，您的订单已经发送给服务商，服务商会很快与您联系，请保持手机畅通。您可以随时通过订单查询，找到您定订单并对我们的服务进行评价。";
+                when 'now'
+                    h2 提交订单后，您可以全程监管施工服务!
+                    p 感谢您对德国鲁道夫净化的信任，我们会用专业的施工技术、配合高效的净化产品，帮您解决室内空气污染的危害，打造宜居生活环境。
+                    script window.TIP="再次感谢您对鲁道夫净化的支持，此次服务后，希望得到您的意见和建议，您的评价促使我们更完善，更好的服务全国像您一样需要我们的人。"
+        article.order-info.form
+            h3 填写订单
+            form(id="orderId")
+                .item.name
+                    label 姓名：
+                    .bfc
+                        input(type="text" name="name")
+                        p.msg
+                .item.tel
+                    label 电话：
+                    a.send-msg#sendMsg(href="javascript:;") 发送短信验证码
+                    .bfc
+                        input(type="text" name="tel")
+                        p.msg
+                .item.code
+                    label 短信验证码：
+                    .bfc
+                        input(type="text" name="code")
+                        p.msg
+                .item.where
+                    label 地址：
+                    .bfc
+                        input(type="text" name="where")
+                        p.msg
+                .item.area
+                    label 建筑面积：
+                    .bfc
+                        input(type="text" name="area")
+                        p.msg
+                .item
+                    a.btn.submit(href="javascript:;") 提交订单
+        article.order-list
+            h3 最近订单量
+            .order-wrapper
+                ul#orderList
+                    li 用户***5941下单产品A1，下单金额xxx
+                    li 用户***5941下单产品A2，下单金额xxx
+                    li 用户***5941下单产品A3，下单金额xxx
+                    li 用户***5941下单产品A4，下单金额xxx
+                    li 用户***5941下单产品A5，下单金额xxx
+                    li 用户***5941下单产品A6，下单金额xxx
+                    li 用户***5941下单产品A7，下单金额xxx
+                    li 用户***5941下单产品A8，下单金额xxx
+                    li 用户***5941下单产品A9，下单金额xxx
+                    li 用户***5941下单产品A0，下单金额xxx
+                    li 用户***5941下单产品A11，下单金额xxx
+                    li 用户***5941下单产品A12，下单金额xxx
+                    li 用户***5941下单产品A13，下单金额xxx
+                    li 用户***5941下单产品A14，下单金额xxx
+                    li 用户***5941下单产品A15，下单金额xxx
+                    li 用户***5941下单产品A16，下单金额xxx
+                    li 用户***5941下单产品A17，下单金额xxx
+        .links
+            a.go-comment(href="/user/say") 留言反馈
+        .ft
+            p.line
+            p.copy-right
+                | &copy;2018 鲁道夫净化
+    script(src="/static/js/lib/zepto.min.js")
+    script(src="/static/js/order.js")

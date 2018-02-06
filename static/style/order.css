@@ -43,6 +43,13 @@ article h2 {
     border-radius: 2px;
 }
 
+.form textarea {
+    height: 200px;
+    display: block;
+    clear: both;
+    width: 100%;
+}
+
 .form .item .send-msg {
     float: right;
     margin-left: 5px;
@@ -60,6 +67,10 @@ article h2 {
 .form .item.error input,
 .form .item.error select {
     border: 1px solid red;
+}
+
+.form .user-tel {
+    line-height: 35px;
 }
 
 .form .item .msg {
@@ -82,6 +93,7 @@ article h2 {
 
 .links {
     margin: 10px 0;
+    text-align: center;
 }
 
 .links .go-comment {
@@ -93,4 +105,16 @@ article h2 {
     text-align: center;
     line-height: 35px;
     margin-left: 20px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.orders li {
+    line-height: 30px;
+    padding: 0 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.orders li .comment {
+    float: right;
 }

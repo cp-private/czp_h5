@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+html
+    head
+        title 给鲁道夫留言
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+        link(href="/static/style/common.css" rel="stylesheet")
+        link(href="/static/style/order.css" rel="stylesheet")
+    body
+        img#logo(src="/static/img/logo.jpg")
+        article.agent-info
+            h2 服务反馈
+            p 我们真诚地希望得到您的意见和建议，您的评价促使我们更完善，更好的服务全国像您一样需要我们的人
+        article.order-info.form
+            h3 查询订单
+            form
+                .item.tel
+                    label 订单电话：
+                    a.send-msg#search(href="javascript:;") 查询订单
+                    .bfc
+                        input(type="text" name="tel" id="tel")
+                        p.msg
+                ul.orders
+        article.form.comment-form(style="display: none")
+            h3 填写留言
+            form(id="orderId")
+                .item.tel
+                    label 订单电话：
+                    .bfc
+                        p.user-tel 18511865955
+                .item.cost
+                    label 您的意见：
+                    textarea.words
+                .item
+                    a.btn.submit(href="javascript:;") 提交评论
+
+        article.order-list
+            h3 最近的留言
+            .order-wrapper
+                ul#orderList
+                    li 用户***5941下单产品A1，下单金额xxx
+                    li 用户***5941下单产品A2，下单金额xxx
+                    li 用户***5941下单产品A3，下单金额xxx
+                    li 用户***5941下单产品A4，下单金额xxx
+                    li 用户***5941下单产品A5，下单金额xxx
+                    li 用户***5941下单产品A6，下单金额xxx
+                    li 用户***5941下单产品A7，下单金额xxx
+                    li 用户***5941下单产品A8，下单金额xxx
+                    li 用户***5941下单产品A9，下单金额xxx
+                    li 用户***5941下单产品A0，下单金额xxx
+                    li 用户***5941下单产品A11，下单金额xxx
+                    li 用户***5941下单产品A12，下单金额xxx
+                    li 用户***5941下单产品A13，下单金额xxx
+                    li 用户***5941下单产品A14，下单金额xxx
+                    li 用户***5941下单产品A15，下单金额xxx
+                    li 用户***5941下单产品A16，下单金额xxx
+                    li 用户***5941下单产品A17，下单金额xxx
+        .ft
+            p.line
+            p.copy-right
+                | &copy;2018 鲁道夫净化
+    script(src="/static/js/lib/zepto.min.js")
+    script(src="/static/js/comment.js")

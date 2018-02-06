@@ -10,68 +10,25 @@ html
         img#logo(src="/static/img/logo.jpg")
         article.agent-info
             h2 成都金牌代理商
-            p.addr 成都市武侯区铁佛塘保利花园1单元
-            p.tel 028-7419231；18511865941（唐先生）
-        article.order-info.form
-            h3 填写订单
-            form(id="orderId")
-                .item.product
-                    label 商品：
-                    .bfc
-                        select(name="product")
-                            option(value="a1") A
-                            option(value="b1") B
-                        p.msg
-                .item.tel
-                    label 联系电话：
-                    a.send-msg#sendMsg(href="javascript:;") 发送短信验证码
-                    .bfc
-                        input(type="text" name="tel")
-                        p.msg
-                .item.code
-                    label 短信验证码：
-                    .bfc
-                        input(type="text" name="code")
-                        p.msg
-                .item.cost
-                    label 成交金额：
-                    .bfc
-                        input(type="text" name="cost")
-                        p.msg
-                .item.count
-                    label 购买数量：
-                    .bfc
-                        input(type="text" name="count")
-                        p.msg
-                .item
-                    a.btn.submit(href="javascript:;") 提交订单
-        article.order-list
-            h3 最近订单量
-            .order-wrapper
-                ul#orderList
-                    li 用户***5941下单产品A1，下单金额xxx
-                    li 用户***5941下单产品A2，下单金额xxx
-                    li 用户***5941下单产品A3，下单金额xxx
-                    li 用户***5941下单产品A4，下单金额xxx
-                    li 用户***5941下单产品A5，下单金额xxx
-                    li 用户***5941下单产品A6，下单金额xxx
-                    li 用户***5941下单产品A7，下单金额xxx
-                    li 用户***5941下单产品A8，下单金额xxx
-                    li 用户***5941下单产品A9，下单金额xxx
-                    li 用户***5941下单产品A0，下单金额xxx
-                    li 用户***5941下单产品A11，下单金额xxx
-                    li 用户***5941下单产品A12，下单金额xxx
-                    li 用户***5941下单产品A13，下单金额xxx
-                    li 用户***5941下单产品A14，下单金额xxx
-                    li 用户***5941下单产品A15，下单金额xxx
-                    li 用户***5941下单产品A16，下单金额xxx
-                    li 用户***5941下单产品A17，下单金额xxx
+            p 欢迎访问“鲁道夫”平台，感谢您对我们的支持！您所扫码为：鲁道夫净化XXX地区代理商XXX，请您放心下单。
+            br
+            p 鲁道夫净化源自德国，始终致力于解决人居环境中因装修带来的危害，我们将真情为您做好每一步服务。
+            br
+            p 本平台为督促“德国鲁道夫净化”全国服务商更好的为您服务，请您尽可能对我们的服务做出评价。
+        
         .links
-            .go-comment(href="") 留言反馈
+            a.go-comment(href=`/order/${agentId}/now`) 现场下单
+            a.go-comment(href=`/order/${agentId}/before`) 预约下单
+            a.go-comment(href="/user/say") 留言反馈
+        p(style="width:80%;margin: auto;margin-bottom:10px;margin-top:20px;")
+            | 德国鲁道夫净化（中国）运营总部
+            br
+            | 全国服务热线：4008951617
+            br
+            | 总部地址：北京市朝阳区住邦2000三号楼。
         .ft
             p.line
             p.copy-right
                 | &copy;2018 鲁道夫净化
     script(src="/static/js/lib/zepto.min.js")
-    script(src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js")
     script(src="/static/js/order.js")

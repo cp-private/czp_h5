@@ -7,6 +7,10 @@ const request = require('request');
 
 
 module.exports = async function(ctx, next) {
+    router.get('/user/say', async (ctx, next) => {
+        ctx.render('say');
+    });
+
     router.get('/agent/:id', async (ctx, next) => {
         ctx.pug.locals.agentId = ctx.params.id;
         let db = await mongo.db('users');
@@ -16,6 +20,31 @@ module.exports = async function(ctx, next) {
         });
         ctx.render('index');
     });
+
+    router.get('/order/:agent/:type', async (ctx, next) => {
+        ctx.pug.locals.type = ctx.params.type;
+        ctx.render('order');
+    });
+
+    router.get('/orderlist/:tel', async (ctx, next) => {
+        let db = await mongo.db('orders');
+        let ret = await db.col.find({tel: ctx.params.tel}).toArray();
+        db.client.close();
+        console.log(ret);
+        ctx.body = JSON.stringify(ret);
+    });
+
+    router.post('/user/comment', async (ctx, next) => {
+        let body = ctx.request.body;
+        let db = await mongo.db('comments');
+        let ret = await db.col.insert(body);
+        db.client.close();
+        if (ret.result.ok > 0) {
+            ctx.body = 'ok';
+        } else {
+            ctx.body = 'faild';
+        }
+    })
 
     //http://api.map.baidu.com/location/ip?ak=9c052a5be4c17b6d9e87a23db4fad4c7&ip=203.195.235.76&coor=bd09ll
     //http://api.map.baidu.com/geocoder/v2/?output=json&ak=9c052a5be4c17b6d9e87a23db4fad4c7&location=22.54605355,114.02597366

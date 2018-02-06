@@ -1,16 +1,13 @@
 (function() {
-    var location = null;
-    function getWxLoc() {
-        wx.getLocation({
-            success: function (res) {
-                location = res;
-            },
-            cancel: function (res) {
+    var POS = null;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            POS = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
             }
         });
     }
-    getWxLoc();
-    
     var orderList = $('#orderList');
     var itemHeight = $('#orderList li').eq(0).height();
     var count = 0;
@@ -36,9 +33,6 @@
     $('.submit').on('click', function() {
         var form = $('#orderId')[0];
         var items = {
-            product: {
-                msg: '请选择产品'
-            },
             tel: {
                 msg: '请填写正确的电话号吗',
                 parttern: /^1\d{10}$/
@@ -47,13 +41,15 @@
                 msg: '请填写正确的短信验证码',
                 parttern: /^\d{5}$/
             },
-            cost: {
-                msg: '请填写数字金额',
-                parttern: /^[1-9](\d+)?$/
+            area: {
+                msg: '请填写数字的建筑面积',
+                parttern: /^\d+\.?(\d+)?$/
             },
-            count: {
-                msg: '请填写数字数量',
-                parttern: /^[1-9](\d+)?$/
+            where: {
+                msg: '请填写地址'
+            },
+            name: {
+                msg: '请填写姓名'
             }
         };
         Object.keys(items).map(function(key) {
@@ -61,7 +57,7 @@
             var value = form[key].value.trim();
             var $el = $('.form .item.' + key);
             var $msg = $el.find('.msg');
-            if (!value || item.parttern && !item.parttern.test(value)) {
+            if (!value && !item.notRequire || item.parttern && !item.parttern.test(value)) {
                 $el.addClass('error');
                 $msg.html(item.msg);
             } else {
@@ -77,13 +73,18 @@
         Object.keys(items).forEach(function(i) {
             data[i] = form[i].value.trim();
         });
+        if (POS) {
+            data.lat = POS.lat;
+            data.lng = POS.lng;
+        }
+        data.create_date = new Date().getTime();
         $.ajax({
             url: '/api/submit/order',
             data: data,
             type: 'POST',
             success: function(res) {
                 if (res == 'ok') {
-                    alert('订单提交成功');
+                    alert(window.TIP);
                     window.location.reload()
                 }
             }
