@@ -82,7 +82,10 @@
             data: data,
             type: 'POST',
             success: function(res) {
-                console.log(res);
+                if (res == 'ok') {
+                    alert('订单提交成功');
+                    location.reload();
+                }
             }
         })
     });
