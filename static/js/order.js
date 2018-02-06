@@ -84,7 +84,7 @@
             success: function(res) {
                 if (res == 'ok') {
                     alert('订单提交成功');
-                    location.reload();
+                    window.location.reload()
                 }
             }
         })
