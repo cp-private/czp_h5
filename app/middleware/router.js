@@ -107,7 +107,7 @@ module.exports = async function(ctx, next) {
                 body.lng = 0;
             }
 
-            let data = await fetch(`http://api.map.baidu.com/geocoder/v2/?output=json&ak=${BAIDU_API_KEY}&location=${body.lat},${body.lng}`)
+            data = await fetch(`http://api.map.baidu.com/geocoder/v2/?output=json&ak=${BAIDU_API_KEY}&location=${body.lat},${body.lng}`)
             body.addr = data.result.formatted_address;
         }
 
