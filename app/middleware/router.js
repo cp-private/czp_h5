@@ -93,7 +93,7 @@ module.exports = async function(ctx, next) {
         let body = ctx.request.body;
         let clientIp = getClientIp(ctx.req);
         if (body.lat && body.lng) {
-            let data = await fetch(`http://api.map.baidu.com/geocoder/v2/?output=json&ak=${BAIDU_API_KEY}&location=${body.lat},${body.lng}`)
+            let data = await fetch(`http://api.map.baidu.com/geocoder/v2/?output=json&ak=${BAIDU_API_KEY}&location=${body.lng},${body.lat}`)
             body.addr = data.result.formatted_address;
         } else {
             let data = await fetch(`http://api.map.baidu.com/location/ip?ak=${BAIDU_API_KEY}&ip=${clientIp}&coor=bd09ll`)
@@ -107,7 +107,7 @@ module.exports = async function(ctx, next) {
                 body.lng = 0;
             }
 
-            data = await fetch(`http://api.map.baidu.com/geocoder/v2/?output=json&ak=${BAIDU_API_KEY}&location=${body.lat},${body.lng}`)
+            data = await fetch(`http://api.map.baidu.com/geocoder/v2/?output=json&ak=${BAIDU_API_KEY}&location=${body.lng},${body.lat}`)
             body.addr = data.result.formatted_address;
         }
 
