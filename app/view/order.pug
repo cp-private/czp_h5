@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 html
     head
-        title 成都金牌代理商
+        title #{agent}
         meta(charset="utf-8")
         meta(name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
         link(href="/static/style/common.css" rel="stylesheet")
         link(href="/static/style/order.css" rel="stylesheet")
+        script
+            | window.Agent = "#{agent}";
+            | window.OrderType = "#{type == 'before'? '预约下单': '现场下单'}";
     body
         img#logo(src="/static/img/logo.jpg")
         article.agent-info

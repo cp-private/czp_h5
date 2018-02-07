@@ -73,6 +73,8 @@
         Object.keys(items).forEach(function(i) {
             data[i] = form[i].value.trim();
         });
+        data.order_type = window.OrderType;
+        data.agent = window.Agent;
         if (POS) {
             data.lat = POS.lat;
             data.lng = POS.lng;

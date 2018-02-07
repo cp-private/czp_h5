@@ -2,8 +2,9 @@ const Router = require('koa-router');
 const router = new Router();
 const mongo = require('./mongo.js');
 const koaBody = require('koa-body');
-
 const request = require('request');
+const ObjectId = require('mongodb').ObjectID;
+const moment = require('moment');
 
 
 module.exports = async function(ctx, next) {
@@ -13,16 +14,20 @@ module.exports = async function(ctx, next) {
 
     router.get('/agent/:id', async (ctx, next) => {
         ctx.pug.locals.agentId = ctx.params.id;
-        let db = await mongo.db('users');
-        db.col.find({}).toArray((err, ret) => {
-            console.log(ret);
-            db.client.close();
-        });
+        let db = await mongo.db('agents');
+        let ret = await db.col.find({_id: ObjectId(ctx.params.id)}).toArray();
+        ctx.pug.locals.agentName = ret[0] ? ret[0].name: '无代理商';
+        db.client.close();
         ctx.render('index');
     });
 
-    router.get('/order/:agent/:type', async (ctx, next) => {
+    router.get('/send/validcode/:tel', async (ctx, next) => {
+        //ALI_KEY
+    });
+
+    router.get('/order/:type', async (ctx, next) => {
         ctx.pug.locals.type = ctx.params.type;
+        ctx.pug.locals.agent = ctx.query.agent;
         ctx.render('order');
     });
 
@@ -30,12 +35,12 @@ module.exports = async function(ctx, next) {
         let db = await mongo.db('orders');
         let ret = await db.col.find({tel: ctx.params.tel}).toArray();
         db.client.close();
-        console.log(ret);
         ctx.body = JSON.stringify(ret);
     });
 
     router.post('/user/comment', async (ctx, next) => {
         let body = ctx.request.body;
+        body.create_date = moment(Number(body.create_date)).format('YYYY-MM-DD hh:mm:ss');
         let db = await mongo.db('comments');
         let ret = await db.col.insert(body);
         db.client.close();
@@ -44,6 +49,42 @@ module.exports = async function(ctx, next) {
         } else {
             ctx.body = 'faild';
         }
+    })
+
+    router.get('/admin/__users__', async(ctx, next) => {
+        let db = await mongo.db('users');
+        let ret = await db.col.find({}).toArray();
+        db.client.close();
+        ctx.pug.locals.list = ret;
+        ctx.render('admin-users');
+    })
+
+    router.get('/admin/__orders__', async(ctx, next) => {
+        let db = await mongo.db('orders');
+        let ret = await db.col.find({}).toArray();
+        db.client.close();
+        ctx.pug.locals.list = ret;
+        ctx.render('admin-orders');
+    })
+
+    router.get('/admin/__comments__', async(ctx, next) => {
+        let db = await mongo.db('comments');
+        let ret = await db.col.find({}).toArray();
+        db.client.close();
+        ctx.pug.locals.list = ret;
+        ctx.render('admin-comments');
+    })
+
+    router.get('/admin/__agents__', async(ctx, next) => {
+        let db = await mongo.db('agents');
+        let ret = await db.col.find({}).toArray();
+        db.client.close();
+        ctx.pug.locals.list = ret;
+        ctx.render('admin-agents');
+    })
+
+    router.get('/admin/__port__', async(ctx, next) => {
+        ctx.render('admin');
     })
 
     //http://api.map.baidu.com/location/ip?ak=9c052a5be4c17b6d9e87a23db4fad4c7&ip=203.195.235.76&coor=bd09ll
@@ -69,14 +110,25 @@ module.exports = async function(ctx, next) {
 
         //验证码是否正确
 
+        body.create_date = moment(+body.create_date).format('YYYY-MM-DD hh:mm:ss');
         let db = await mongo.db('orders');
         let ret = await db.col.insert(body);
+
         db.client.close();
         if (ret.result.ok > 0) {
             ctx.body = 'ok';
         } else {
             ctx.body = 'faild';
         }
+
+        let user = {
+            tel: body.tel,
+            name: body.name,
+            addr: body.addr
+        }
+        db = await mongo.db('users');
+        ret = await db.col.insert(user);
+        db.client.close();
     });
 
     ctx.app.use(koaBody());
