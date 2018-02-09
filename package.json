@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cp-private/czp_h5#readme",
   "dependencies": {
+    "@alicloud/sms-sdk": "^1.0.8",
     "koa": "^2.4.1",
     "koa-body": "^2.5.0",
     "koa-pug": "^3.0.0-2",

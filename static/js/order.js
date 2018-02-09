@@ -34,7 +34,7 @@
         var form = $('#orderId')[0];
         var items = {
             tel: {
-                msg: '请填写正确的电话号吗',
+                msg: '请填写正确的电话号码',
                 parttern: /^1\d{10}$/
             },
             code: {
@@ -88,6 +88,8 @@
                 if (res == 'ok') {
                     alert(window.TIP);
                     window.location.reload()
+                } else {
+                    alert(res);
                 }
             }
         })
@@ -95,9 +97,15 @@
 
     //发送短信验证码
     $('#sendMsg').on('click', function(e) {
-        var i = 30, timmer;
+        var i = 120, timmer;
         var el = $(e.target);
         var txt = el.html();
+        var tel = $('[name="tel"]').val();
+        if (!/^1\d{10}$/.test(tel)) {
+            return $('.item.tel').addClass('error');
+        } else {
+            $('.item.tel').removeClass('error');
+        }
         if (el.attr('is-click')) return;
         el.attr('is-click', 'clicked');
         
@@ -110,9 +118,10 @@
         }, 1000);
 
         $.ajax({
-            url: '/api/sendmsg'
-        }).then(function(res) {
-            console.log(res);
+            url: '/send/validcode/' + tel,
+            success: function(res) {
+                console.log(res);
+            }
         })
 
     })
