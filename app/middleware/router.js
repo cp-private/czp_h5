@@ -110,7 +110,10 @@ module.exports = async function(ctx, next) {
         let db = await mongo.db('agents');
         let ret = await db.col.find({}).toArray();
         db.client.close();
-        ctx.pug.locals.list = ret;
+        ctx.pug.locals.list = ret.map(i => {
+            i.link = `http://${ctx.request.header.host}/agent/${i._id}`
+            return i;
+        });
         ctx.render('admin-agents');
     })
 
@@ -177,6 +180,20 @@ module.exports = async function(ctx, next) {
 
     await next();
 };
+
+router.post('/api/submit/addAgent', async (ctx, next) => {
+    let body = ctx.request.body;
+    console.log(body);
+    body.create_date = moment(new Date().getTime()).format('YYYY-MM-DD hh:mm:ss')
+    let db = await mongo.db('agents');
+    let ret = await db.col.insert(body);
+    db.client.close();
+    if (ret.result.ok > 0) {
+        ctx.body = 'ok';
+    } else {
+        ctx.body = '网络忙，请稍后重试';
+    }
+});
 
 /**
  * 获取客户端ip 
