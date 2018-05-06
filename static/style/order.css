@@ -110,6 +110,10 @@ article h2 {
     text-decoration: none;
 }
 
+.links .go-comment:first-child {
+    margin-left: 0;
+}
+
 .orders li {
     line-height: 30px;
     padding: 0 10px;
