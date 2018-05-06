@@ -1,9 +1,8 @@
 article {
-    background: #fff;
-    margin: 0 0 10px 0;
+    background: transparent;
     overflow: hidden;
-    padding: 10px;
-    border: solid #eee;
+    padding: 15px;
+    border: 1px solid #1f4687;
     border-width: 1px 0;
     margin-top: -1px;
 }
@@ -11,11 +10,13 @@ article {
 article h3 {
     font-size: 14px;
     margin-bottom: 5px;
+    color: #fff;
 }
 
 article h2 {
     font-size: 16px;
     margin-bottom: 5px;
+    color: #fff;
 }
 
 .form .item {
@@ -117,4 +118,26 @@ article h2 {
 
 .orders li .comment {
     float: right;
+}
+
+body {
+    background: url(../img/bg.jpg) no-repeat bottom;
+    background-size: 100% auto;
+    background-color: #0063a4;
+    color: rgba(255,255,255,.9);
+    padding-bottom: 110vw;
+}
+
+.addr {
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    text-align: right;
+    width: calc(100% - 30px);
+}
+
+.ft .copy-right {
+    width: calc(100% - 30px);   
+    background: transparent;
+    text-align: right;
 }

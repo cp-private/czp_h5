@@ -1,6 +1,6 @@
 body,html {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -22,7 +22,7 @@ a {
 #logo {
     width: 100%;
     display: block;
-    border-bottom: 4px solid #fd8f04;
+    border-bottom: 2px solid #013d83;
 }
 
 h1, h2, h3, h4, h5 {
@@ -35,7 +35,6 @@ select, input, textarea {
 }
 
 .btn {
-    background-color: #fff;
     padding: 5px;
     line-height: 1;
     font-size: 14px;
@@ -55,8 +54,7 @@ select, input, textarea {
 }
 
 .ft .copy-right {
-    line-height: 1em;
-    width: 10em;
+    line-height: 2em;
     margin: auto;
     z-index: 1;
     position: relative;
@@ -71,4 +69,5 @@ select, input, textarea {
     height: 1px;
     background: #ddd;
     top: 0.5em;
+    display: none;
 }
