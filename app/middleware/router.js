@@ -172,6 +172,32 @@ module.exports = async function(ctx, next) {
         db = await mongo.db('users');
         ret = await db.col.insert(user);
         db.client.close();
+
+        //发送短信给用户
+        // let res = await new Promise((resolve, reject) => {
+        //     smsClient.sendSMS({
+        //         PhoneNumbers: body.tel,
+        //         SignName: '鲁道夫净化',
+        //         TemplateCode: 'SMS_125017263',
+        //         TemplateParam: JSON.stringify({
+        //             name: body.name,
+        //             addr: body.addr,
+        //             size: body.area + '㎡',
+        //             phone: body.tel
+        //         })
+        //     }).then(function (res) {
+        //         resolve(res);
+        //     }, function (err) {
+        //         console.log(err)
+        //         reject(err);
+        //     })
+        // });
+
+        let {code} = res;
+        if (code === 'OK') {
+            ctx.body = 'ok';
+        }
+
     });
 
     ctx.app.use(koaBody());
@@ -186,7 +212,20 @@ router.post('/api/submit/addAgent', async (ctx, next) => {
     console.log(body);
     body.create_date = moment(new Date().getTime()).format('YYYY-MM-DD hh:mm:ss')
     let db = await mongo.db('agents');
-    let ret = await db.col.insert(body);
+    let ret = {};
+    if (body.userId) {
+        ret = await db.updateOne(
+            { _id : body.userId }
+            , { 
+                $set: { 
+                    name : body.name,
+                    info: body.info
+                } 
+            }
+        ); 
+    } else {
+        ret = await db.col.insert(body);
+    }
     db.client.close();
     if (ret.result.ok > 0) {
         ctx.body = 'ok';
@@ -194,6 +233,19 @@ router.post('/api/submit/addAgent', async (ctx, next) => {
         ctx.body = '网络忙，请稍后重试';
     }
 });
+
+router.post('/api/submit/deleteAgent', async (ctx, next) => {
+    let body = ctx.request.body;
+    let db = await mongo.db('agents');
+    let ret = await db.deleteOne(
+        { _id : body.userId }
+    ); 
+    if (ret.result.n == 1) {
+        ctx.body = 'ok';
+    } else {
+        ctx.body = '网络忙，请稍后重试';
+    }
+})
 
 /**
  * 获取客户端ip 
