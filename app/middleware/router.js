@@ -24,6 +24,7 @@ module.exports = async function(ctx, next) {
         let db = await mongo.db('agents');
         let ret = await db.col.find({_id: ObjectId(ctx.params.id)}).toArray();
         ctx.pug.locals.agentName = ret[0] ? ret[0].name: '无代理商';
+        ctx.pug.locals.agentInfo = ret[0] ? ret[0].info: '';
         db.client.close();
         ctx.render('index');
     });
@@ -91,10 +92,18 @@ module.exports = async function(ctx, next) {
     })
 
     router.get('/admin/__orders__', async(ctx, next) => {
+	let agent = ctx.query.agent;
         let db = await mongo.db('orders');
-        let ret = await db.col.find({}).toArray();
+	let filters = agent ? {"agent": agent}: {};
+        let ret = await db.col.find(filters).sort([['create_date', -1]]).toArray();
         db.client.close();
         ctx.pug.locals.list = ret;
+console.log(filters)
+
+        let db1 = await mongo.db('agents');
+        let ret1 = await db1.col.find({}).toArray();
+        db1.client.close();
+        ctx.pug.locals.agents = ret1;
         ctx.render('admin-orders');
     })
 
@@ -214,8 +223,8 @@ router.post('/api/submit/addAgent', async (ctx, next) => {
     let db = await mongo.db('agents');
     let ret = {};
     if (body.userId) {
-        ret = await db.updateOne(
-            { _id : body.userId }
+        ret = await db.col.updateOne(
+            { _id : ObjectId(body.userId) }
             , { 
                 $set: { 
                     name : body.name,
@@ -237,12 +246,13 @@ router.post('/api/submit/addAgent', async (ctx, next) => {
 router.post('/api/submit/deleteAgent', async (ctx, next) => {
     let body = ctx.request.body;
     let db = await mongo.db('agents');
-    let ret = await db.deleteOne(
-        { _id : body.userId }
+    let ret = await db.col.deleteOne(
+        { _id : ObjectId(body.userId) }
     ); 
     if (ret.result.n == 1) {
         ctx.body = 'ok';
     } else {
+console.log(ret)
         ctx.body = '网络忙，请稍后重试';
     }
 })
