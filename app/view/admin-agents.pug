@@ -12,6 +12,8 @@ html
                     th 代理商
                     th 添加时间
                     th 代理商链接
+                    th 下单类型
+                    th 代理商手机号(仅收短信用)
                     th(width="210px") 代理商二维码
                     th 操作
                 each i in list
@@ -19,6 +21,8 @@ html
                         td #{i.name}
                         td #{i.create_date}
                         td #{i.link}
+                        td #{i.order_type}
+                        td #{i.phone}
                         td.qrcode(data-link=`${i.link}`) 
                         td
                             a(href="javascript:;" class="edit-agent" data-info=`${i.info}` data-name=`${i.name}` data-id=`${i._id}` data-toggle="modal" data-target="#exampleModal") 编辑
@@ -42,6 +46,9 @@ html
                         .form-group
                             label.control-label 描述信息:
                             textarea.form-control.info
+                        .form-group
+                            label.control-label 代理商电话(发送短信提醒用):
+                            textarea.form-control.phone
                     .modal-footer
                         button.btn.btn-default(type="button" data-dismiss="modal") 关闭
                         button.btn.btn-primary.submit(type="button") 确定

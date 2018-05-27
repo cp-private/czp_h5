@@ -20,6 +20,7 @@ html
                     th 代理商
                     th 下单时间
                     th 下单地址 
+                    th 操作
                 each i in list
                     tr 
                         td #{i.name}
@@ -29,9 +30,11 @@ html
                         td #{i.agent}
                         td #{i.create_date}
                         td #{i.addr}
+                        td 
+                            a(href="javascript:;" class="del-order" data-id=`${i._id}`) 删除
         script(src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js")
         script(src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous")
-        script(type="text/javascript") $('#agentFilter').on('change', function() {location.href="http://order.rudolf1922.com/admin/__orders__?agent=" + $('#agentFilter').val()})
+        script(src="/static/js/admin_order.js")
 
     
 

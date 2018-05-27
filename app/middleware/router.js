@@ -183,24 +183,37 @@ console.log(filters)
         db.client.close();
 
         //发送短信给用户
-        // let res = await new Promise((resolve, reject) => {
-        //     smsClient.sendSMS({
-        //         PhoneNumbers: body.tel,
-        //         SignName: '鲁道夫净化',
-        //         TemplateCode: 'SMS_125017263',
-        //         TemplateParam: JSON.stringify({
-        //             name: body.name,
-        //             addr: body.addr,
-        //             size: body.area + '㎡',
-        //             phone: body.tel
-        //         })
-        //     }).then(function (res) {
-        //         resolve(res);
-        //     }, function (err) {
-        //         console.log(err)
-        //         reject(err);
-        //     })
-        // });
+        let res = await new Promise((resolve, reject) => {
+            smsClient.sendSMS({
+                PhoneNumbers: body.tel,
+                SignName: '鲁道夫净化',
+                TemplateCode: 'SMS_135801995',
+                TemplateParam: JSON.stringify({
+                    orderInfo: `${body.name}，${body.addr},${body.tel}`
+                })
+            }).then(function (res) {
+                resolve(res);
+            }, function (err) {
+                console.log(err)
+                reject(err);
+            })
+        });
+        
+        let agentPhone = await getAgentPhone({name: body.agent});
+        smsClient.sendSMS({
+            PhoneNumbers: agentPhone,
+            SignName: '鲁道夫净化',
+            TemplateCode: 'SMS_135801992',
+            TemplateParam: JSON.stringify({
+                orderType: body.order_type,
+                orderInfo: `${body.name}，${body.addr},${body.tel}`
+            })
+        }).then(function (res) {
+            resolve(res);
+        }, function (err) {
+            console.log(err)
+            reject(err);
+        })
 
         let {code} = res;
         if (code === 'OK') {
@@ -228,7 +241,8 @@ router.post('/api/submit/addAgent', async (ctx, next) => {
             , { 
                 $set: { 
                     name : body.name,
-                    info: body.info
+                    info: body.info,
+                    phone: body.phone
                 } 
             }
         ); 
@@ -248,6 +262,19 @@ router.post('/api/submit/deleteAgent', async (ctx, next) => {
     let db = await mongo.db('agents');
     let ret = await db.col.deleteOne(
         { _id : ObjectId(body.userId) }
+    ); 
+    if (ret.result.n == 1) {
+        ctx.body = 'ok';
+    } else {
+console.log(ret)
+        ctx.body = '网络忙，请稍后重试';
+    }
+})
+
+router.post('/api/admin_delorder/:id', async (ctx, next) => {
+    let db = await mongo.db('orders');
+    let ret = await db.col.deleteOne(
+        { _id : ObjectId(ctx.params.id) }
     ); 
     if (ret.result.n == 1) {
         ctx.body = 'ok';
@@ -304,4 +331,12 @@ async function saveCodeToDb(params) {
     db.client.close();
     if (ret.result.ok > 0) console.log(ret);
     return ret.result.ok > 0;
+}
+
+
+async function getAgentPhone(obj) {
+    let db = await mongo.db('agents');
+    let ret = await db.col.find(obj).toArray();
+    if (ret.length) return ret[0].phone;
+    return '';
 }
