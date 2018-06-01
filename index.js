@@ -16,4 +16,4 @@ global.ALI_KEY         = process.env.ALI_KEY;
 });
 
 
-app.listen(3002);
+app.listen(3000);

@@ -25,7 +25,7 @@ html
                         td #{i.phone}
                         td.qrcode(data-link=`${i.link}`) 
                         td
-                            a(href="javascript:;" class="edit-agent" data-info=`${i.info}` data-name=`${i.name}` data-id=`${i._id}` data-toggle="modal" data-target="#exampleModal") 编辑
+                            a(href="javascript:;" class="edit-agent" data-phone=`${i.phone}` data-info=`${i.info}` data-name=`${i.name}` data-id=`${i._id}` data-toggle="modal" data-target="#exampleModal") 编辑
                             | &nbsp;|&nbsp;
                             a(href="javascript:;" class="del-agent" data-id=`${i._id}`) 删除
         button.btn.btn-primary(type="button" data-toggle="modal" data-target="#exampleModal") 添加代理商

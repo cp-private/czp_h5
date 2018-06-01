@@ -39,6 +39,7 @@
         $('.user-id').val($el.attr('data-id'));
         $('.name').val($el.attr('data-name'));
         $('.info').val($el.attr('data-info'));
+        $('.phone').val($el.attr('data-phone'));
         $('#exampleModalLabel').html('编辑代理商');
     });
 
