@@ -189,7 +189,7 @@ console.log(filters)
                 SignName: '鲁道夫净化',
                 TemplateCode: 'SMS_135801995',
                 TemplateParam: JSON.stringify({
-                    orderInfo: `${body.name}，${body.addr},${body.tel}`
+                    orderInfo: `${body.name.slice(0, 5)},${body.tel.slice(0, 12)}`
                 })
             }).then(function (res) {
                 resolve(res);
@@ -206,7 +206,7 @@ console.log(filters)
             TemplateCode: 'SMS_135801992',
             TemplateParam: JSON.stringify({
                 orderType: body.order_type,
-                orderInfo: `${body.name}，${body.addr},${body.tel}`
+                orderInfo: `${body.name.slice(0, 5)}, ${body.tel.slice(0, 12)}`
             })
         }).then(function (res) {
             resolve(res);
@@ -271,7 +271,7 @@ console.log(ret)
     }
 })
 
-router.post('/api/admin_delorder/:id', async (ctx, next) => {
+router.get('/api/admin_delorder/:id', async (ctx, next) => {
     let db = await mongo.db('orders');
     let ret = await db.col.deleteOne(
         { _id : ObjectId(ctx.params.id) }

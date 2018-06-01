@@ -125,5 +125,18 @@
         })
 
     })
+    
+    var guided = localStorage.getItem('is-guide');
+    if (guided == "yes") {
+
+    } else {
+        $('.show-guide').show();
+    }
+
+    
+    $('.show-guide').on('click', function() {
+        localStorage.setItem('is-guide', "yes")
+        $('.show-guide').hide();
+    })
 
 })();
