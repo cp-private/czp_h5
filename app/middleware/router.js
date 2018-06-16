@@ -187,9 +187,9 @@ console.log(filters)
             smsClient.sendSMS({
                 PhoneNumbers: body.tel,
                 SignName: '鲁道夫净化',
-                TemplateCode: 'SMS_135801995',
+                TemplateCode: 'SMS_137665505',
                 TemplateParam: JSON.stringify({
-                    orderInfo: `${body.name.slice(0, 5)},${body.tel.slice(0, 12)}`
+                    orderInfo: body.agent
                 })
             }).then(function (res) {
                 resolve(res);
