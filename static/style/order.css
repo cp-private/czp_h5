@@ -125,7 +125,7 @@ article h2 {
 }
 
 body {
-    background: url(../img/bg.jpg) no-repeat bottom;
+    background: url(../img/bg.jpg?1) no-repeat bottom;
     background-size: 100% auto;
     background-color: #0063a4;
     color: rgba(255,255,255,.9);

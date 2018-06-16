@@ -8,7 +8,7 @@ html
         link(href="/static/style/order.css" rel="stylesheet")
     body
         .show-guide 请点击右上角，选择“收藏”，方便下次访问！
-        img#logo(src="/static/img/logo.jpg")
+        img#logo(src="/static/img/logo.jpg?1")
         article.agent-info
             h2 #{agentName}
             p #{agentInfo}
@@ -16,14 +16,14 @@ html
             br
             p 鲁道夫净化源自德国，始终致力于解决人居环境中因装修带来的危害，我们将真情为您做好每一步服务。
             br
-            p 本平台为督促“德国鲁道夫净化”全国服务商更好的为您服务，请您尽可能对我们的服务做出评价。
+            p 为督促“鲁道夫净化”全国服务商更好的为您服务，请您尽可能对我们的服务做出评价。
         
         .links
             a.go-comment(href=`/order/now?agent=${agentName}`) 现场下单
             a.go-comment(href=`/order/before?agent=${agentName}`) 预约下单
             a.go-comment(href="/user/say") 服务评价
         p.addr
-            | 德国鲁道夫净化（中国）运营总部
+            | 鲁道夫净化运营中心
             br
             | 全国服务热线：4008951617
             br
